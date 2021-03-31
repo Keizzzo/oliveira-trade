@@ -2,15 +2,26 @@ package com.oliveiratrade.repositories;
 
 
 import com.oliveiratrade.models.Usuario;
+import lombok.AllArgsConstructor;
+import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.stereotype.Repository;
 
 import java.util.List;
 
+@Repository
+@AllArgsConstructor
 public class UsuarioDaoImpl implements InterfaceDAO<Usuario> {
 
+    private JdbcTemplate jdbcTemplate;
 
     @Override
-    public void inserir(Usuario objeto) {
+    public void inserir(Usuario usuario) {
 
+        //TESTE
+        jdbcTemplate.update("INSERT INTO cadastro_cliente(nome, email) VALUES(?, ?)",
+                    "keizo",
+                    "keizo@gmail.com"
+                );
     }
 
     @Override
@@ -19,7 +30,7 @@ public class UsuarioDaoImpl implements InterfaceDAO<Usuario> {
     }
 
     @Override
-    public void alterar(Usuario objeto) {
+    public void alterar(Usuario usuario) {
 
     }
 

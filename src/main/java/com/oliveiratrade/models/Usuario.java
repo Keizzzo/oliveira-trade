@@ -14,6 +14,8 @@ import javax.validation.constraints.Size;
 @Getter
 public class Usuario {
 
+    private Long id;
+
     @NotNull
     @Size(max = 30)
     private String nome;
@@ -27,7 +29,11 @@ public class Usuario {
     private String cpf;
 
     @NotNull
-    @Size(max = 8)
+    @Size(max = 9)
     private String rg;
+
+    private EnderecoResidencial enderecoResidencial;
+
+    private DadosLogin dadosLogin;
 
 }

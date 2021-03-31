@@ -1,2 +1,9 @@
 server:
   port: 1414
+
+spring:
+  datasource:
+    driverClassName: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://localhost:3306/oliveira_trade?useSSL=false&useTimezone=true&serverTimezone=UTC
+    username: root
+    password: google
