@@ -20,8 +20,6 @@ public class CadastroController {
     @RequestMapping(value = "/novo-cadastro", method = RequestMethod.POST)
     public void cadastrarNovoCliente(@RequestBody Usuario usuario) {
 
-        System.out.println(usuario.getNome());
-
         if (validator.validate(usuario).size() != 0) {
             throw new RuntimeException("Erro na Validação de Parâmetro Usuário.");
         }

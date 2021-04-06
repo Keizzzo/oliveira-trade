@@ -40,6 +40,6 @@ public class EnderecoResidencial {
 
     @NotNull
     @Size(min = 11, max = 11)
-    private String cpf;
+    private String cep;
 
 }
