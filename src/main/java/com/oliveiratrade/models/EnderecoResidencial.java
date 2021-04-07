@@ -15,6 +15,9 @@ import javax.validation.constraints.Size;
 public class EnderecoResidencial {
 
     @NotNull
+    private Long idUsuario;
+
+    @NotNull
     @Size(max = 40)
     private String logradouro;
 

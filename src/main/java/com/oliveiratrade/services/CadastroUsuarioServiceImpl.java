@@ -18,10 +18,22 @@ public class CadastroUsuarioServiceImpl implements CadastroUsuarioService {
     @Autowired
     private InterfaceDAO<Usuario> usuarioInterfaceDAO;
 
+    @Autowired
+    private InterfaceDAO<DadosLogin> dadosLoginInterfaceDAO;
+
+    @Autowired
+    private InterfaceDAO<EnderecoResidencial> enderecoResidencialInterfaceDAO;
+
     @Override
     public void criarCadastro(Usuario usuario) {
 
-        usuarioInterfaceDAO.inserir(usuario);
+        var idUsuario = usuarioInterfaceDAO.inserir(usuario);
+
+        usuario.getEnderecoResidencial().setIdUsuario(idUsuario);
+        usuario.getDadosLogin().setIdUsuario(idUsuario);
+
+        dadosLoginInterfaceDAO.inserir(usuario.getDadosLogin());
+        enderecoResidencialInterfaceDAO.inserir(usuario.getEnderecoResidencial());
 
     }
 }

@@ -26,16 +26,16 @@ public class UsuarioDaoImpl implements InterfaceDAO<Usuario> {
                     PreparedStatement ps = connection
                             .prepareStatement("INSERT INTO usuario(nome, nome_completo, cpf, rg) VALUES(?, ?, ?, ?)", Statement.RETURN_GENERATED_KEYS);
 
-                    ps.setString(1, "keizo");
-                    ps.setString(2, "keizo kobayashi");
-                    ps.setString(3, "85231649785");
-                    ps.setString(4, "852639745");
+                    ps.setString(1, usuario.getNome());
+                    ps.setString(2, usuario.getNomeCompleto());
+                    ps.setString(3, usuario.getCpf());
+                    ps.setString(4, usuario.getRg());
 
                     return ps;
                 },
                 keyHolder);
 
-        System.out.println(keyHolder.getKey().longValue());
+
         return keyHolder.getKey().longValue();
     }
 
