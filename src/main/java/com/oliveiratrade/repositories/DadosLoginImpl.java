@@ -9,22 +9,20 @@ import java.util.List;
 
 @Repository
 @AllArgsConstructor
-public class DadosLoginImpl implements  InterfaceDAO<DadosLogin> {
+public class DadosLoginImpl implements  InterfaceDAOComIdExistente<DadosLogin> {
 
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public Long inserir(DadosLogin dadosLogin) {
+    public void inserir(Long id, DadosLogin dadosLogin) {
 
         jdbcTemplate.update("insert into DADOS_LOGIN(ID_USUARIO, NICKNAME, EMAIL, PASSWORD) values (?, ?, ?, ?)",
-                    dadosLogin.getIdUsuario(),
+                    id,
                     dadosLogin.getNickName(),
                     dadosLogin.getEmail(),
                     dadosLogin.getPassword()
                 );
 
-        //REFATORAR
-        return dadosLogin.getIdUsuario();
     }
 
     @Override
@@ -33,7 +31,7 @@ public class DadosLoginImpl implements  InterfaceDAO<DadosLogin> {
     }
 
     @Override
-    public void alterar(DadosLogin dadosLogin) {
+    public void alterar(Long id, DadosLogin dadosLogin) {
 
     }
 

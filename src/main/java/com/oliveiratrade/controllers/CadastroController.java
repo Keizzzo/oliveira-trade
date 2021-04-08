@@ -27,9 +27,6 @@ public class CadastroController {
             throw new RuntimeException("Erro na Validação de Parâmetro Usuário.");
         }
 
-        System.out.println(usuario.getEnderecoResidencial().getNumero());
-        System.out.println(usuario.getDadosLogin().getNickName());
-
         cadastroUsuarioService.criarCadastro(usuario);
 
     }

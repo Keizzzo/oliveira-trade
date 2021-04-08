@@ -15,9 +15,6 @@ import javax.validation.constraints.Size;
 public class DadosLogin {
 
     @NotNull
-    private Long idUsuario;
-
-    @NotNull
     @Size(min = 6, max = 20)
     private String nickName;
 

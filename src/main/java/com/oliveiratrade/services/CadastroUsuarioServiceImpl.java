@@ -4,6 +4,7 @@ import com.oliveiratrade.models.DadosLogin;
 import com.oliveiratrade.models.EnderecoResidencial;
 import com.oliveiratrade.models.Usuario;
 import com.oliveiratrade.repositories.InterfaceDAO;
+import com.oliveiratrade.repositories.InterfaceDAOComIdExistente;
 import com.oliveiratrade.repositories.UsuarioDaoImpl;
 import lombok.AllArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,21 +20,18 @@ public class CadastroUsuarioServiceImpl implements CadastroUsuarioService {
     private InterfaceDAO<Usuario> usuarioInterfaceDAO;
 
     @Autowired
-    private InterfaceDAO<DadosLogin> dadosLoginInterfaceDAO;
+    private InterfaceDAOComIdExistente<DadosLogin> dadosLoginInterfaceDAO;
 
     @Autowired
-    private InterfaceDAO<EnderecoResidencial> enderecoResidencialInterfaceDAO;
+    private InterfaceDAOComIdExistente<EnderecoResidencial> enderecoResidencialInterfaceDAO;
 
     @Override
     public void criarCadastro(Usuario usuario) {
 
         var idUsuario = usuarioInterfaceDAO.inserir(usuario);
 
-        usuario.getEnderecoResidencial().setIdUsuario(idUsuario);
-        usuario.getDadosLogin().setIdUsuario(idUsuario);
-
-        dadosLoginInterfaceDAO.inserir(usuario.getDadosLogin());
-        enderecoResidencialInterfaceDAO.inserir(usuario.getEnderecoResidencial());
+        dadosLoginInterfaceDAO.inserir(idUsuario, usuario.getDadosLogin());
+        enderecoResidencialInterfaceDAO.inserir(idUsuario, usuario.getEnderecoResidencial());
 
     }
 }

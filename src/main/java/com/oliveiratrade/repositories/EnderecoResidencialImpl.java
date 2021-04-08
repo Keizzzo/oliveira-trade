@@ -9,15 +9,15 @@ import java.util.List;
 
 @Repository
 @AllArgsConstructor
-public class EnderecoResidencialImpl implements InterfaceDAO<EnderecoResidencial> {
+public class EnderecoResidencialImpl implements InterfaceDAOComIdExistente<EnderecoResidencial> {
 
     private JdbcTemplate jdbcTemplate;
 
     @Override
-    public Long inserir(EnderecoResidencial enderecoResidencial) {
+    public void inserir(Long id, EnderecoResidencial enderecoResidencial) {
 
         jdbcTemplate.update("insert into endereco_residencial(id_usuario, logradouro, numero, complemento, bairro, cidade, uf, cep) values (?, ?, ?, ?, ?, ?, ?, ?)",
-                    enderecoResidencial.getIdUsuario(),
+                    id,
                     enderecoResidencial.getLogradouro(),
                     enderecoResidencial.getNumero(),
                     enderecoResidencial.getComplemento(),
@@ -27,8 +27,6 @@ public class EnderecoResidencialImpl implements InterfaceDAO<EnderecoResidencial
                     enderecoResidencial.getCep()
                 );
 
-        //REFATORAR
-        return enderecoResidencial.getIdUsuario();
     }
 
     @Override
@@ -37,7 +35,7 @@ public class EnderecoResidencialImpl implements InterfaceDAO<EnderecoResidencial
     }
 
     @Override
-    public void alterar(EnderecoResidencial objeto) {
+    public void alterar(Long id, EnderecoResidencial enderecoResidencial) {
 
     }
 
